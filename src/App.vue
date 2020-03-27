@@ -1,32 +1,88 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark>
+      <div class="d-flex align-center">
+        <span class="mr-2">
+          <strong>COVID-19 HUB</strong>
+        </span>
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <router-link :to="{ name: 'statistik' }">
+        <v-btn
+          :key="headerLinks[0].name"
+          target="_blank"
+          color="white"
+          text
+          rounded
+          class="my-2"
+        >
+          <span class="mr-2">{{ headerLinks[0].name }}</span>
+        </v-btn>
+      </router-link>
+
+      <router-link :to="{ name: 'home' }">
+        <v-btn
+          :key="headerLinks[1].name"
+          target="_blank"
+          color="white"
+          text
+          rounded
+          class="my-2"
+        >
+          <span class="mr-2">{{ headerLinks[1].name }}</span>
+        </v-btn>
+      </router-link>
+    </v-app-bar>
+
+    <v-content>
+      <router-view />
+    </v-content>
+
+    <v-footer color="primary lighten-l" padless>
+      <v-row justify="center" no-gutters>
+        <v-btn
+          v-for="link in footerLinks"
+          :key="link.name"
+          :href="link.url"
+          target="_blank"
+          color="white"
+          text
+          rounded
+          class="my-2"
+          >{{ link.name }}</v-btn
+        >
+      </v-row>
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+export default {
+  name: "App",
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  data: () => ({
+    footerLinks: [
+      {
+        name: "API",
+        url: "https://github.com/ridhof/covid19hub-api"
+      },
+      {
+        name: "Github",
+        url: "#"
+      }
+    ],
+    headerLinks: [
+      {
+        name: "Statistik",
+        url: "statistik"
+      },
+      {
+        name: "Berita",
+        url: "home"
+      }
+    ]
+  })
+};
+</script>

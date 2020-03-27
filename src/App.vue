@@ -22,7 +22,7 @@
         </v-btn>
       </router-link>
 
-      <router-link :to="{ name: 'home' }">
+      <router-link :to="{ name: 'berita' }">
         <v-btn
           :key="headerLinks[1].name"
           target="_blank"
@@ -70,7 +70,7 @@ export default {
       },
       {
         name: "Github",
-        url: "#"
+        url: "https://github.com/ridhof/covid19hub"
       }
     ],
     headerLinks: [
@@ -80,7 +80,7 @@ export default {
       },
       {
         name: "Berita",
-        url: "home"
+        url: "berita"
       }
     ]
   })

@@ -12,6 +12,13 @@ const routes = [
     }
   },
   {
+    path: "/berita",
+    name: "berita",
+    component: function() {
+      return import("../views/Berita.vue");
+    }
+  },
+  {
     path: "/about",
     name: "about",
     // route level code-splitting

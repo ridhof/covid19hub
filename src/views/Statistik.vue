@@ -75,6 +75,7 @@ export default {
           waktu[1],
           waktu[2]
         );
+        terakhirUpdate.setHours(terakhirUpdate.getHours() + 7);
         const temp = {
           name: "Nasional",
           kasus: response.data["kumulatif"],
@@ -86,7 +87,16 @@ export default {
             " " +
             this.bulan[terakhirUpdate.getMonth()] +
             " " +
-            terakhirUpdate.getFullYear()
+            terakhirUpdate.getFullYear() +
+            " " +
+            (terakhirUpdate.getHours().toString().length != 1
+              ? terakhirUpdate.getHours()
+              : "0" + terakhirUpdate.getHours()) +
+            ":" +
+            (terakhirUpdate.getMinutes().toString().length != 1
+              ? terakhirUpdate.getMinutes()
+              : "0" + terakhirUpdate.getMinutes()) +
+            " WIB"
         };
         this.items.push(temp);
         ProvinsiService.getAllProvinceToday()
@@ -105,6 +115,7 @@ export default {
                 waktu[1],
                 waktu[2]
               );
+              terakhirUpdate.setHours(terakhirUpdate.getHours() + 7);
               const temp = {
                 name: element["nama"],
                 kasus: element["kumulatif"],
@@ -116,7 +127,16 @@ export default {
                   " " +
                   this.bulan[terakhirUpdate.getMonth()] +
                   " " +
-                  terakhirUpdate.getFullYear()
+                  terakhirUpdate.getFullYear() +
+                  " " +
+                  (terakhirUpdate.getHours().toString().length != 1
+                    ? terakhirUpdate.getHours()
+                    : "0" + terakhirUpdate.getHours()) +
+                  ":" +
+                  (terakhirUpdate.getMinutes().toString().length != 1
+                    ? terakhirUpdate.getMinutes()
+                    : "0" + terakhirUpdate.getMinutes()) +
+                  " WIB"
               };
               this.items.push(temp);
             });

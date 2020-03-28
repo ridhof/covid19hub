@@ -18,8 +18,7 @@
                         color="deep-purple accent-4"
                         :href="item.url"
                         target="_blank"
-                        >Kunjungi</v-btn
-                      >
+                      >Kunjungi</v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-lazy>
@@ -34,8 +33,7 @@
                       color="deep-purple accent-4"
                       :href="item.url"
                       target="_blank"
-                      >Kunjungi</v-btn
-                    >
+                    >Kunjungi</v-btn>
                   </v-card-actions>
                 </v-card>
               </div>
@@ -82,97 +80,89 @@ export default {
       if (newVal) {
         this.isActive = !this.isActive;
         this.page++;
-        BeritaService.getNews(this.page)
-          .then(response => {
-            response["data"].forEach(element => {
-              const tanggal = element["update"].split("T")[0].split("-");
-              const waktu = element["update"]
-                .split("T")[1]
-                .split(".")[0]
-                .split(":");
-              const terakhirUpdate = new Date(
-                tanggal[0],
-                tanggal[1] - 1,
-                tanggal[2],
-                waktu[0],
-                waktu[1],
-                waktu[2]
-              );
-              terakhirUpdate.setHours(terakhirUpdate.getHours() + 7);
-              const temp = {
-                judul: element["judul"],
-                url: element["sumber"],
-                tanggal:
-                  terakhirUpdate.getDate() +
-                  " " +
-                  this.bulan[terakhirUpdate.getMonth()] +
-                  " " +
-                  terakhirUpdate.getFullYear() +
-                  " " +
-                  (terakhirUpdate.getHours().toString().length != 1
-                    ? terakhirUpdate.getHours()
-                    : "0" + terakhirUpdate.getHours()) +
-                  ":" +
-                  (terakhirUpdate.getMinutes().toString().length != 1
-                    ? terakhirUpdate.getMinutes()
-                    : "0" + terakhirUpdate.getMinutes()) +
-                  " WIB"
-              };
-              if (!this.items.includes(temp)) {
-                this.items.push(temp);
-              }
-            });
-          })
-          .catch(error => {
-            console.log("There was an error:", error.response);
+        BeritaService.getNews(this.page).then(response => {
+          response["data"].forEach(element => {
+            const tanggal = element["update"].split("T")[0].split("-");
+            const waktu = element["update"]
+              .split("T")[1]
+              .split(".")[0]
+              .split(":");
+            const terakhirUpdate = new Date(
+              tanggal[0],
+              tanggal[1] - 1,
+              tanggal[2],
+              waktu[0],
+              waktu[1],
+              waktu[2]
+            );
+            terakhirUpdate.setHours(terakhirUpdate.getHours() + 7);
+            const temp = {
+              judul: element["judul"],
+              url: element["sumber"],
+              tanggal:
+                terakhirUpdate.getDate() +
+                " " +
+                this.bulan[terakhirUpdate.getMonth()] +
+                " " +
+                terakhirUpdate.getFullYear() +
+                " " +
+                (terakhirUpdate.getHours().toString().length != 1
+                  ? terakhirUpdate.getHours()
+                  : "0" + terakhirUpdate.getHours()) +
+                ":" +
+                (terakhirUpdate.getMinutes().toString().length != 1
+                  ? terakhirUpdate.getMinutes()
+                  : "0" + terakhirUpdate.getMinutes()) +
+                " WIB"
+            };
+            if (!this.items.includes(temp)) {
+              this.items.push(temp);
+            }
           });
+        });
       }
     }
   },
   created() {
     this.items = [];
-    BeritaService.getNews()
-      .then(response => {
-        response["data"].forEach(element => {
-          const tanggal = element["update"].split("T")[0].split("-");
-          const waktu = element["update"]
-            .split("T")[1]
-            .split(".")[0]
-            .split(":");
-          const terakhirUpdate = new Date(
-            tanggal[0],
-            tanggal[1] - 1,
-            tanggal[2],
-            waktu[0],
-            waktu[1],
-            waktu[2]
-          );
-          terakhirUpdate.setHours(terakhirUpdate.getHours() + 7);
-          const temp = {
-            judul: element["judul"],
-            url: element["sumber"],
-            tanggal:
-              terakhirUpdate.getDate() +
-              " " +
-              this.bulan[terakhirUpdate.getMonth()] +
-              " " +
-              terakhirUpdate.getFullYear() +
-              " " +
-              (terakhirUpdate.getHours().toString().length != 1
-                ? terakhirUpdate.getHours()
-                : "0" + terakhirUpdate.getHours()) +
-              ":" +
-              (terakhirUpdate.getMinutes().toString().length != 1
-                ? terakhirUpdate.getMinutes()
-                : "0" + terakhirUpdate.getMinutes()) +
-              " WIB"
-          };
-          this.items.push(temp);
-        });
-      })
-      .catch(error => {
-        console.log("There was an error:", error.response);
+    BeritaService.getNews().then(response => {
+      response["data"].forEach(element => {
+        const tanggal = element["update"].split("T")[0].split("-");
+        const waktu = element["update"]
+          .split("T")[1]
+          .split(".")[0]
+          .split(":");
+        const terakhirUpdate = new Date(
+          tanggal[0],
+          tanggal[1] - 1,
+          tanggal[2],
+          waktu[0],
+          waktu[1],
+          waktu[2]
+        );
+        terakhirUpdate.setHours(terakhirUpdate.getHours() + 7);
+        const temp = {
+          judul: element["judul"],
+          url: element["sumber"],
+          tanggal:
+            terakhirUpdate.getDate() +
+            " " +
+            this.bulan[terakhirUpdate.getMonth()] +
+            " " +
+            terakhirUpdate.getFullYear() +
+            " " +
+            (terakhirUpdate.getHours().toString().length != 1
+              ? terakhirUpdate.getHours()
+              : "0" + terakhirUpdate.getHours()) +
+            ":" +
+            (terakhirUpdate.getMinutes().toString().length != 1
+              ? terakhirUpdate.getMinutes()
+              : "0" + terakhirUpdate.getMinutes()) +
+            " WIB"
+        };
+        this.items.push(temp);
       });
+    });
   }
 };
 </script>

@@ -142,13 +142,11 @@ export default {
             });
             this.is_loading = false;
           })
-          .catch(error => {
-            console.log("There was an error:", error.response);
+          .catch(() => {
             this.is_loading = false;
           });
       })
-      .catch(error => {
-        console.log("There was an error:", error.response);
+      .catch(() => {
         this.is_loading = false;
       });
   }

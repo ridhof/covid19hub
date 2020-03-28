@@ -18,7 +18,8 @@
                         color="deep-purple accent-4"
                         :href="item.url"
                         target="_blank"
-                      >Kunjungi</v-btn>
+                        >Kunjungi</v-btn
+                      >
                     </v-card-actions>
                   </v-card>
                 </v-lazy>
@@ -33,7 +34,8 @@
                       color="deep-purple accent-4"
                       :href="item.url"
                       target="_blank"
-                    >Kunjungi</v-btn>
+                      >Kunjungi</v-btn
+                    >
                   </v-card-actions>
                 </v-card>
               </div>
